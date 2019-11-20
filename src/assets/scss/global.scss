@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Alata&display=swap');
+@import "./variables";
+@import "./skeleton";
+
+* {
+  font-family: 'Alata', sans-serif;
+  color: $secondary;
+}
+
+.bg-img {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+h1,
+h2 {
+  font-size: 40pt;
+}
+
+.btn {
+  border: 2px solid $secondary;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    background-color: $secondary;
+    color: $primary;
+  }
+}

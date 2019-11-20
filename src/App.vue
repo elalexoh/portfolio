@@ -1,32 +1,32 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <main class="main-container">
+    <navbar />
+    <div class="container">
+      <vue-page-transition name="fade-in-right">
+        <router-view />
+      </vue-page-transition>
     </div>
-    <router-view/>
-  </div>
-</template>
+    <customFooter />
+  </main>
+</template><script>
+import Navbar from "@/views/layout/Navbar.vue";
+import Footer from "@/views/layout/Footer.vue";
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+export default {
+  components: {
+    navbar: Navbar,
+    customFooter: Footer
   }
+};
+</script><style lang="scss">
+.main-container {
+  background-color: $primary;
+}
+.container {
+  min-height: calc(100vh - (#{$footer} + #{$navbar}));
+  width: 75%;
+  //border: 1px solid tomato;
+  margin: 0 auto;
+  height: 100%;
 }
 </style>

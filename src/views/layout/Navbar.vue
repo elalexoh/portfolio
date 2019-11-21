@@ -1,8 +1,15 @@
 <template>
   <nav class="navbar">
     <div class="navbar__toggle">
-      <div class="navbar__toggle-btn">
+      <div class="navbar__toggle-btn" @click="toggleBtn" :class="{'active':showVerticalMenu}">
         <img class="navbar__toggle-img" src="@/assets/img/menu.svg" />
+        <div class="navbar__toggle-menu-wrapper">
+          <ul class="navbar__toggle-items">
+            <li class="navbar__toggle-item">bloque1</li>
+            <li class="navbar__toggle-item">bloque1</li>
+            <li class="navbar__toggle-item">bloque1</li>
+          </ul>
+        </div>
       </div>
     </div>
     <ul class="navbar__options">
@@ -13,7 +20,18 @@
   </nav>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      showVerticalMenu: false
+    };
+  },
+  methods: {
+    toggleBtn: function() {
+      this.showVerticalMenu = !this.showVerticalMenu;
+    }
+  }
+};
 </script>
 <style lang="scss">
 .navbar {
@@ -22,8 +40,27 @@ export default {};
   grid-template-columns: repeat(3, 1fr);
   align-content: center;
   height: $navbar;
+  &__toggle-menu-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+    height: 100%;
+    width: 250px;
+    transition: transform 0.5s ease-in;
+  }
   &__toggle-btn {
     padding-left: 1.5rem;
+    width: max-content;
+    &.active {
+      .navbar__toggle-menu-wrapper {
+        transform: translate(0%, -50%);
+      }
+    }
+  }
+  .navbar__toggle-items {
+    background-color: #bada55;
+    text-align: center;
   }
   &__toggle-img {
     width: 35px;

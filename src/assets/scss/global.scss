@@ -16,6 +16,7 @@
 h1,
 h2 {
   font-size: 40pt;
+  text-transform: uppercase;
 }
 
 .btn {
@@ -27,4 +28,12 @@ h2 {
     background-color: $secondary;
     color: $primary;
   }
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.weird {
+  color: $tests;
 }

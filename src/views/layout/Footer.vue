@@ -1,7 +1,10 @@
 <template>
   <footer class="footer">
     <!-- Copyright -->
-    <div class="footer__copyright">@ 2019 Deeply_Weird All rights reserved</div>
+    <div class="footer__copyright">
+      @ 2019
+      <span class="weird">Deeply_Weird</span> All rights reserved
+    </div>
 
     <!-- Menu Social Media -->
     <div class="footer__social-media">
@@ -28,9 +31,17 @@ export default {};
   text-align: center;
   align-content: center;
   &__social-media,
-  &__contact {
+  &__contact,
+  &__copyright {
     display: flex;
     justify-content: space-around;
+    align-items: center;
+  }
+  &__copyright {
+    justify-content: center;
+    .weird {
+      padding: 0 0.5rem;
+    }
   }
 }
 </style>

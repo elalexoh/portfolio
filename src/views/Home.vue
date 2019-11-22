@@ -1,14 +1,14 @@
 <template>
   <section class="home">
     <!-- featured content -->
-    <article class="featured">
+    <article id="featured" class="featured">
       <h1 class="featured__title uppercase">Hello Everyone</h1>
       <div
         class="featured__description"
       >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut fugit dignissimos dolores nesciunt consequatur expedita illo incidunt in, vero aliquam. Nam doloremque beatae quas vel aliquid nisi molestias sit saepe.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut fugit dignissimos dolores</div>
     </article>
     <!-- Masonry -->
-    <article class="masonry">
+    <article id="masonry" class="masonry">
       <div class="masonry__wrapper">
         <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
         <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
@@ -22,7 +22,7 @@
       <a href="#" class="btn masonry__btn">submit more</a>
     </article>
     <!-- About me -->
-    <article class="about-me">
+    <article id="about-me" class="about-me">
       <h2 class="about-me__title">About me</h2>
       <p
         class="about-me__description"
@@ -48,7 +48,7 @@
       </div>
     </article>
     <!-- Blog -->
-    <article class="blog">
+    <article id="blog" class="blog">
       <h2 class="blog__title">
         New
         <br />in blog
@@ -64,7 +64,7 @@
       </div>
     </article>
     <!-- Contact -->
-    <article class="contact">
+    <article id="contact" class="contact">
       <h2 class="contact__title">Contacts</h2>
       <div class="contact__info-wrapp">
         <p class="contact__info">have a question, offers on cooperation?</p>
@@ -90,11 +90,21 @@
 
 <script>
 export default {
-  name: "home",
-  components: {}
+  props: ["setColorTheme"],
+  data() {
+    return {
+      themeColor: "rgb(32, 32, 32)"
+    };
+  },
+  mounted() {
+    this.setColorTheme(this.themeColor);
+  }
 };
 </script>
 <style lang="scss">
+.home {
+  background-color: $primary;
+}
 .featured {
   height: 300px;
   display: grid;

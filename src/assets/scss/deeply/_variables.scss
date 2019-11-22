@@ -4,8 +4,9 @@ $grey_1: rgb(183, 183, 183);
 $grey_2: #909090;
 $grey_3: #303030;
 /*Theme*/
-$primary: $black;
+$primary: var(--bg-color);
 $secondary: $grey_1;
+
 
 /*Debug*/
 $tests: #bada55;

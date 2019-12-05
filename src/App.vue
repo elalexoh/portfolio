@@ -8,7 +8,8 @@
     </div>
     <customFooter />
   </main>
-</template><script>
+</template>
+<script>
 import Navbar from "@/views/layout/Navbar.vue";
 import Footer from "@/views/layout/Footer.vue";
 

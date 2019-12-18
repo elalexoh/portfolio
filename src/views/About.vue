@@ -8,7 +8,7 @@ export default {
   props: ["setColorTheme"],
   data() {
     return {
-      themeColor: "white"
+      themeColor: "teal"
     };
   },
   mounted() {

@@ -8,19 +8,7 @@
       >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut fugit dignissimos dolores nesciunt consequatur expedita illo incidunt in, vero aliquam. Nam doloremque beatae quas vel aliquid nisi molestias sit saepe.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut fugit dignissimos dolores</div>
     </article>
     <!-- Masonry -->
-    <article id="masonry" class="masonry">
-      <div class="masonry__wrapper">
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-        <div class="masonry__block bg-img" style="background-image:url('http://placehold.it/250/')"></div>
-      </div>
-      <a href="#" class="btn masonry__btn">submit more</a>
-    </article>
+    <masonry />
     <!-- About me -->
     <article id="about-me" class="about-me">
       <h2 class="about-me__title">About me</h2>
@@ -53,7 +41,7 @@
         New
         <br />in blog
       </h2>
-      <a src="#" class="blog__action btn">view all posts</a>
+      <a href="#" class="blog__action btn">view all posts</a>
       <div class="post">
         <img class="post__img" src="http://placehold.it/560x320" alt />
         <div class="post__title">Vue it's amazing!</div>
@@ -89,15 +77,27 @@
 </template>
 
 <script>
+import { bus } from "@/main.js";
+import Masonry from "@/components/Masonry";
 export default {
   props: ["setColorTheme"],
   data() {
     return {
-      themeColor: "rgb(32, 32, 32)"
+      themeColor: "rgb(32, 32, 32)",
+      menuOptions: [
+        { title: "Welcome", link: "featured" },
+        { title: "About Me", link: "about-me" },
+        { title: "New in Blog", link: "blog" },
+        { title: "Contacts", link: "contact" }
+      ]
     };
   },
   mounted() {
     this.setColorTheme(this.themeColor);
+    bus.setMenuOptions(this.menuOptions,this.themeColor);
+  },
+  components: {
+    masonry: Masonry
   }
 };
 </script>
@@ -119,22 +119,6 @@ export default {
     width: 75%;
     letter-spacing: 0.5px;
     line-height: 1.5;
-  }
-}
-.masonry {
-  text-align: center;
-  margin-bottom: 3rem;
-  &__wrapper {
-    height: 300px;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-columns: repeat(4, 1fr);
-  }
-  &__block {
-  }
-  &__btn {
-    display: inline-block;
-    margin-top: 3rem;
   }
 }
 .about-me {
@@ -269,5 +253,8 @@ export default {
       padding-top: 1.5rem;
     }
   }
+}
+.btn {
+  cursor: pointer;
 }
 </style>

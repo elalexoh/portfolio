@@ -11,24 +11,15 @@
       <div class="navbar__toggle-menu-wrapper" :class="{'active':showVerticalMenu}">
         <span class="navbar__toggle-close pointer" @click="toggleBtn"></span>
         <ul class="navbar__toggle-items">
-          <li class="navbar__toggle-item">
-            <a href="#featured">Hello!</a>
-          </li>
-          <li class="navbar__toggle-item">
-            <a href="#about-me">About Me</a>
-          </li>
-          <li class="navbar__toggle-item">
-            <a href="#blog">New in Blog</a>
-          </li>
-          <li class="navbar__toggle-item">
-            <a href="#contact">Contacts</a>
+          <li class="navbar__toggle-item" v-for="(menuItem, index) in menuItems" :key="index">
+            <a :href="'#'+menuItem.link">{{menuItem.title}}</a>
           </li>
         </ul>
       </div>
     </div>
     <ul class="navbar__options">
       <router-link class="navbar__option" tag="li" exact active-class="active" to="/">Home</router-link>
-      <router-link class="navbar__option" tag="li" exact active-class="active" to="/about">About</router-link>
+      <router-link class="navbar__option" tag="li" exact active-class="active" to="/about/">About</router-link>
     </ul>
     <div class="navbar__contact"></div>
     <a href="#app" class="navbar__up-btn">
@@ -37,16 +28,26 @@
   </nav>
 </template>
 <script>
+import { bus } from "@/main.js";
 export default {
   data() {
     return {
-      showVerticalMenu: false
+      showVerticalMenu: false,
+      menuItems: [],
+      themeColor: ''
     };
   },
   methods: {
     toggleBtn: function() {
       this.showVerticalMenu = !this.showVerticalMenu;
     }
+  },
+  created() {
+    bus.$on("updateMenuOptions", (menu, themeColor) => {
+      this.themeColor = themeColor;
+      this.menuItems = menu;
+      console.log(`Este es el color del theme ${this.themeColor}`);
+    });
   }
 };
 </script>
@@ -85,7 +86,7 @@ export default {
     width: 11.5%;
     transition: transform 0.5s ease-in;
     transform: translate(-100%, -50%);
-    background-color: $grey_3;
+    background-color: var(--bg-color);
     &.active {
       transform: translate(0%, -50%);
       .navbar__toggle-close::after {

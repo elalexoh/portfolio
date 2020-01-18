@@ -8,7 +8,8 @@
     </div>
     <customFooter />
   </main>
-</template><script>
+</template>
+<script>
 import Navbar from "@/views/layout/Navbar.vue";
 import Footer from "@/views/layout/Footer.vue";
 
@@ -37,7 +38,8 @@ export default {
     }
   }
 };
-</script><style lang="scss">
+</script>
+<style lang="scss">
 .main-container {
   background-color: $primary;
   transition: background-color 0.5s ease;

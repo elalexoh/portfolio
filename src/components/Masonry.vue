@@ -98,7 +98,7 @@ export default {
   }
   &__item {
     position: relative;
-    border: 1px solid #000; //borrame
+    overflow: hidden;
     &--info {
       height: 100%;
       display: flex;

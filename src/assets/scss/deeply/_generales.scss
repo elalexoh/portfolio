@@ -3,6 +3,10 @@
   color: $secondary;
 }
 
+body {
+  overflow: hidden; //bloquear el scroll horizontal
+}
+
 .bg-img {
   background-position: center center;
   background-size: cover;
@@ -40,4 +44,28 @@ h2 {
 
 html {
   scroll-behavior: smooth;
+}
+
+.accent {
+  color: $accent;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.beta {
+  position: relative;
+
+  &::after {
+    content: "Beta";
+    height: max-content;
+    background-color: tomato;
+    color: white;
+    font-size: 10pt;
+    position: absolute;
+    padding: 0.2rem;
+    top: 100%;
+    transform: translateY(-50%);
+  }
 }

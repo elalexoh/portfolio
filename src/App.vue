@@ -1,12 +1,12 @@
 <template>
   <main id="app" class="main-container" :style="cssVars">
-    <navbar />
+    <navbar/>
     <div class="container">
       <vue-page-transition name="fade-in-right">
-        <router-view :setColorTheme="setColorTheme" />
+        <router-view :setColorTheme="setColorTheme"/>
       </vue-page-transition>
     </div>
-    <customFooter />
+    <customFooter/>
   </main>
 </template>
 <script>
@@ -38,15 +38,15 @@ export default {
     }
   }
 };
-</script><style lang="scss">
+</script>
+<style lang="scss">
 .main-container {
   background-color: $primary;
   transition: background-color 0.5s ease;
 }
 .container {
   min-height: calc(100vh - (#{$footer} + #{$navbar}));
-  width: 75%;
-  //border: 1px solid tomato;
+  width: $container_width;
   margin: 0 auto;
   height: 100%;
 }

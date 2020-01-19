@@ -11,8 +11,8 @@ export var bus = new Vue({
     default: ''
   },
   methods: {
-    setMenuOptions(menu) {
-      this.$emit('updateMenuOptions', menu);
+    setMenuOptions(menu, themeColor) {
+      this.$emit('updateMenuOptions', menu, themeColor);
     }
   }
 })

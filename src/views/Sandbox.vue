@@ -19,9 +19,9 @@ export default {
     return {
       themeColor: "white",
       menuOptions: [
-        { title: "About", link: "sandbox_description" },
-        { title: "Welcome", link: "sandbox_me" },
-        { title: "Extra", link: "sandbox_extra" }
+        { id:1, title: "About", link: "app", active: true },
+        { id:2, title: "Welcome", link: "sandbox_me", active: false },
+        { id:3, title: "Extra", link: "sandbox_extra", active: false }
       ]
     };
   },

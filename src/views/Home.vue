@@ -97,11 +97,11 @@ export default {
     return {
       themeColor: "rgb(32, 32, 32)",
       menuOptions: [
-        { title: "Welcome", link: "app" },
-        { title: "Projects", link: "masonry" },
-        { title: "About Me", link: "about-me" },
-        // { title: "New in Blog", link: "blog" },
-        { title: "Contacts", link: "contact" }
+        { id: 1, title: "Welcome", link: "app", active: true },
+        { id: 2, title: "Projects", link: "masonry", active: false},
+        { id: 3, title: "About Me", link: "about-me", active: false},
+        // { id: 1, title: "New in Blog", link: "blog", active: false},
+        { id: 4, title: "Contacts", link: "contact", active: false }
       ],
       skills: [
         { id: 1, title: "Front-End", range: "90%" },

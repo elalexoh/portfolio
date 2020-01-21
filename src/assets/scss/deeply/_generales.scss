@@ -11,6 +11,10 @@ body {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  &__top {
+    background-position: top center;
+  }
 }
 
 h1,

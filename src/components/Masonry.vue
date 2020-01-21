@@ -2,8 +2,8 @@
   <section class="masonry__container">
     <div class="masonry__wrapper">
       <div
-        class="masonry__item bg-img"
-        :style="`background-image:url(${proyect.thumbnail})`"
+        class="masonry__item bg-img bg-img__top"
+        :style="{'background-image': 'url(' + proyect.thumbnail + ')'}"
         v-for="proyect in proyects"
         :key="proyect.id"
       >
@@ -11,11 +11,10 @@
           <h2 class="masonry__item--info-title">
             <a :href="proyect.link" :target="(proyect.link)? '_blank' : ''">{{ proyect.name }}</a>
           </h2>
-          <!-- <h2 class="masonry__item--tech-icon">{{ proyect.techs }}</h2> -->
         </div>
       </div>
     </div>
-    <a href="https://facebook.com" target="_blank" class="btn masonry__btn">see more</a>
+    <a href="https://codepen.io/Deeply" target="_blank" class="btn masonry__btn">see more</a>
   </section>
 </template>
 <script>
@@ -28,57 +27,57 @@ export default {
           name: "Laboratorios Behrens",
           techs: "Wordpress",
           link: "https://behrens.orugadesarrollo.com",
-          thumbnail: "http://placehold.it/250/"
+          thumbnail: require('@/assets/img/proyects/behrens.png')
         },
         {
           id: 2,
           name: "Compass Vital Health",
           techs: "Wordpress",
           link: "http://compass.orugadesarrollo.com/home",
-          thumbnail: "http://placehold.it/250/"
+          thumbnail: require('@/assets/img/proyects/compass.png')
         },
         {
           id: 3,
           name: "Food Solution",
           techs: "Wordpress",
           link: "http://foodsolution.orugadesarrollo.com/",
-          thumbnail: "http://placehold.it/250/"
+          thumbnail: require('@/assets/img/proyects/foodsolution.png')
         },
         {
           id: 4,
           name: "Pick & Fly",
           techs: "Wordpress",
           link: "http://pickandfly.orugadesarrollo.com/",
-          thumbnail: "http://placehold.it/250/"
+          thumbnail: require('@/assets/img/proyects/pickandfly.png')
         },
-        {
-          id: 5,
-          name: "Traki offline",
-          techs: "Wordpress",
-          link: "",
-          thumbnail: "http://placehold.it/250/"
-        },
+        // {
+        //   id: 5,
+        //   name: "Traki offline",
+        //   techs: "Wordpress",
+        //   link: "",
+        //   thumbnail: "http://placehold.it/250/"
+        // },
         {
           id: 6,
           name: "Tquimicos",
           techs: "NuxtJs",
           link: "https://www.tquimicosca.com/",
-          thumbnail: "http://placehold.it/250/"
+          thumbnail: require('@/assets/img/proyects/tquimicos.png')
         },
         {
           id: 7,
           name: "The lux Properties",
           techs: "NuxtJs",
-          link: "dev.theluxproperties.com/",
-          thumbnail: "http://placehold.it/250/"
+          link: "https://dev.theluxproperties.com/",
+          thumbnail: require('@/assets/img/proyects/theluxproperties.png')
         },
-        {
-          id: 8,
-          name: "IronTrop",
-          techs: "NuxtJs",
-          link: "",
-          thumbnail: "http://placehold.it/250/"
-        }
+        // {
+        //   id: 8,
+        //   name: "IronTrop",
+        //   techs: "NuxtJs",
+        //   link: "",
+        //   thumbnail: "http://placehold.it/250/"
+        // }
       ]
     };
   }

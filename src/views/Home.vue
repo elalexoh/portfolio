@@ -11,7 +11,9 @@
           </h1>
         </div>
         <!-- image -->
-        <img class="featured__img" src="@/assets/img/deeply.png" alt="hero">
+        <div class="featured__wrapper">
+          <img class="featured__wrapper--img" src="@/assets/img/deeply.png" alt="hero">
+        </div>
       </section>
     </article>
 
@@ -62,7 +64,6 @@
         <div class="post__date">Jan 23, 2019</div>
       </div>
     </article>-->
-
     <!-- Contact -->
     <article id="contact" class="contact">
       <h2 class="contact__title beta">Contacts</h2>
@@ -70,7 +71,7 @@
         <p class="contact__info">have a question, offers on cooperation?</p>
         <p class="contact__info">feel free to contact me!</p>
         <p class="contact__info">Venezuela</p>
-        <a class="contact__anchor contact__anchor--email" href="#">Fred_dev@gmail.com</a>
+        <a class="contact__anchor contact__anchor--email"  href = "mailto: fred_dev@gmail.com">Fred_dev@gmail.com</a>
         <a class="contact__anchor contact__anchor--phone" href="#">+58 424-178-5377</a>
       </div>
       <div class="contact-form">
@@ -137,8 +138,24 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     align-items: center;
-    &__img {
-      height: calc(100vh - 250px);
+    &__wrapper{
+      position: relative;
+      &--img {
+        height: calc(100vh - 250px);
+        position: relative;
+        z-index: 100;
+      }
+      &::after{
+        content: "";
+        height: 200px;
+        left:0;
+        // top: 50%;
+        // transform: translateY(-50%);
+        width: 100%;
+        position: ab solute;
+        background-color: $secondary;
+        border-radius: 50%;
+      }
     }
     &__title {
       width: min-content;

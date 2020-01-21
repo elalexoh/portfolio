@@ -217,7 +217,6 @@ export default {
   }
   &__dots {
     position: fixed;
-    // background-color: tomato;
     height: 100%;
     width: 100px;
     right: 0;
@@ -233,8 +232,8 @@ export default {
       transform: translateX(100%);
     }
     &--dot {
-      height: 25px;
-      width: 25px;
+      height: 20px;
+      width: 20px;
       background: $grey_3;
       border-radius: 50%;
       margin: 1rem 0;

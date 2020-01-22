@@ -13,15 +13,13 @@
         <span class="navbar__toggle-close pointer" @click="toggleBtn"></span>
         <ul class="navbar__toggle-items">
           <li class="navbar__toggle-item" v-for="(menuItem, index) in menuItems" :key="index">
-            <a 
-            :data-hash="menuItem.link" 
-            class="navbar__toggle-link" 
-            @click="toggleDotActive($event)" 
-            :href="'#'+menuItem.link" 
-            :class="(menuItem.active)? 'active' : ''"
-            >
-              {{menuItem.title}}
-            </a>
+            <a
+              :data-hash="menuItem.link"
+              class="navbar__toggle-link"
+              @click="toggleDotActive($event)"
+              :href="'#'+menuItem.link"
+              :class="(menuItem.active)? 'active' : ''"
+            >{{menuItem.title}}</a>
           </li>
         </ul>
       </div>
@@ -64,19 +62,19 @@ export default {
     return {
       showVerticalMenu: false,
       menuItems: [],
-      themeColor: "",
+      themeColor: ""
     };
   },
   watch: {
     // react to change in route
     // params to, from
-      $route (to){
-        const items = this.menuItems;
-        items.forEach( item =>{
-          if(`#${item.link}` === to.hash ) {
-            item.active == true;
-          }
-        })
+    $route(to) {
+      const items = this.menuItems;
+      items.forEach(item => {
+        if (`#${item.link}` === to.hash) {
+          item.active == true;
+        }
+      });
     }
   },
   methods: {
@@ -86,7 +84,10 @@ export default {
     toggleDotActive(e) {
       const currentElement = e.target;
       const classElement = currentElement.className;
-      const altClassElement = (classElement === 'navbar__toggle-link') ? 'navbar__dots--dot' : 'navbar__toggle-link';
+      const altClassElement =
+        classElement === "navbar__toggle-link"
+          ? "navbar__dots--dot"
+          : "navbar__toggle-link";
       const elements = document.querySelectorAll(`.${classElement}`);
       const altElements = document.querySelectorAll(`.${altClassElement}`);
       elements.forEach((element, i) => {
@@ -94,7 +95,10 @@ export default {
         element.classList.remove("active");
         // alter menu elements toggle
         altElements[i].classList.remove("active");
-        if(altElements[i].getAttribute('data-hash') === currentElement.getAttribute('data-hash')){
+        if (
+          altElements[i].getAttribute("data-hash") ===
+          currentElement.getAttribute("data-hash")
+        ) {
           altElements[i].classList.add("active");
         }
       });
@@ -170,7 +174,7 @@ export default {
       margin-top: 1.5rem;
     }
   }
-  &__toggle-link.active{
+  &__toggle-link.active {
     color: $accent;
   }
   &__toggle-img {
@@ -185,6 +189,7 @@ export default {
     justify-content: space-around;
     align-items: center;
   }
+  // in dev
   &__option--sandbox {
     // position: relative;
     // &::after {
@@ -226,9 +231,9 @@ export default {
     justify-content: center;
     align-items: center;
     transition: transform 0.5s ease-in;
-    &.show{
+    &.show {
     }
-    &.hide{
+    &.hide {
       transform: translateX(100%);
     }
     &--dot {
@@ -264,6 +269,38 @@ export default {
           clip-path: polygon(100% 50%, 0 0, 0 98%);
         }
       }
+    }
+  }
+  // responsive
+  @media (max-width: 991px) {
+    &__toggle {
+      &-menu-wrapper {
+        width: 100%;
+        z-index: 500;
+        height: auto;
+        transform: translate(-100%, 0%);
+        top: 0%;
+        &.active {
+          transform: translate(0%, 0%);
+        }
+        &::after {
+          width: 100%;
+          height: 5px;
+          top: 100%;
+        }
+      }
+    }
+  }
+  @media (max-width: 576px) {
+    grid-template-columns: 20% 60% 20%;
+    &__options {
+      width: auto;
+    }
+    &__option {
+      font-size: 12pt;
+    }
+    &__dots {
+      width: 75px;
     }
   }
 }

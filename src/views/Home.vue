@@ -17,9 +17,50 @@
       </section>
     </article>
 
-    <!-- Masonry -->
-    <article id="masonry" class="masonry">
-      <masonry/>
+    <!-- projects -->
+    <article id="projects" class="projects">
+      <!-- Project section title -->
+      <section>
+        <h2 class="projects__title">Projects</h2>
+      </section>
+      <!-- Projects Tags -->
+      <section class="projects__wrapper-tag">
+        <div class="projects__tag pointer" @click="toggleModal()">
+          <h3>spa's</h3>
+        </div>
+        <div class="projects__tag pointer">
+          <h3>Landing Page's</h3>
+        </div>
+        <div class="projects__tag pointer">
+          <h3>e-commerce's</h3>
+        </div>
+        <div class="projects__tag pointer">
+          <h3>blog's</h3>
+        </div>
+      </section>
+      <!-- modal for each project -->
+      <section class="project modal" :class="(projectModal)? 'active' : 'hidden'">
+        <!-- carousel -->
+        <section class>
+          <h2 class="project__title beta">carousel</h2>
+        </section>
+        <!-- project description -->
+        <section class="project__info">
+          <h2>Project Title</h2>
+          <div class="project__description">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga numquam optio omnis ab voluptates magnam veniam alias vero praesentium, magni accusantium quisquam nisi sunt, dignissimos sapiente consectetur enim voluptate facilis.</p>
+          </div>
+          <ul class="project__techs">
+            <li class="project__techs-tech">Bootstrap</li>
+            <li class="project__techs-tech">Wordpress</li>
+            <li class="project__techs-tech">Woocommerce</li>
+            <li class="project__techs-tech">VueJS</li>
+            <li class="project__techs-tech">Jquery</li>
+          </ul>
+        </section>
+        <div class="close pointer" @click="toggleModal()"></div>
+      </section>
+      <!-- <masonry/> -->
     </article>
 
     <!-- About me -->
@@ -29,12 +70,12 @@
         About
         <span class="accent">me</span>
       </h2>
+      <!-- image -->
+      <img class="img-fluid about-me__img" src="@/assets/img/about-me.png" alt="hero">
       <!-- description -->
       <p
         class="about-me__description"
       >Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus accusamus dolorum beatae, adipisci at nesciunt! Incidunt totam, dolores esse, magnam illum nostrum nesciunt fugit rerum architecto in voluptatem, eligendi earum! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea quos, perferendis natus, vero non odit quam unde, obcaecati sed deleniti veritatis facere! Sequi facere ipsa voluptates voluptatem architecto vitae iure!</p>
-      <!-- image -->
-      <img class="img-fluid about-me__img" src="@/assets/img/about-me.png" alt="hero">
       <!-- skills -->
       <div class="about-me__skills skills">
         <h3 class="skills__title uppercase">skills</h3>
@@ -64,6 +105,7 @@
         <div class="post__date">Jan 23, 2019</div>
       </div>
     </article>-->
+
     <!-- Contact -->
     <article id="contact" class="contact">
       <h2 class="contact__title beta">Contacts</h2>
@@ -71,7 +113,10 @@
         <p class="contact__info">have a question, offers on cooperation?</p>
         <p class="contact__info">feel free to contact me!</p>
         <p class="contact__info">Venezuela</p>
-        <a class="contact__anchor contact__anchor--email"  href = "mailto: fred_dev@gmail.com">Fred_dev@gmail.com</a>
+        <a
+          class="contact__anchor contact__anchor--email"
+          href="mailto: fred_dev@gmail.com"
+        >Fred_dev@gmail.com</a>
         <a class="contact__anchor contact__anchor--phone" href="#">+58 424-178-5377</a>
       </div>
       <div class="contact-form">
@@ -91,7 +136,8 @@
 
 <script>
 import { bus } from "@/main.js";
-import Masonry from "@/components/Masonry";
+// import Masonry from "@/components/Masonry";
+
 export default {
   props: ["setColorTheme"],
   data() {
@@ -99,15 +145,16 @@ export default {
       themeColor: "rgb(32, 32, 32)",
       menuOptions: [
         { id: 1, title: "Welcome", link: "app", active: true },
-        { id: 2, title: "Projects", link: "masonry", active: false},
-        { id: 3, title: "About Me", link: "about-me", active: false},
+        { id: 2, title: "Projects", link: "projects", active: false },
+        { id: 3, title: "About Me", link: "about-me", active: false },
         // { id: 1, title: "New in Blog", link: "blog", active: false},
         { id: 4, title: "Contacts", link: "contact", active: false }
       ],
       skills: [
         { id: 1, title: "Front-End", range: "90%" },
         { id: 2, title: "Back-End", range: "70%" }
-      ]
+      ],
+      projectModal: false
     };
   },
   mounted() {
@@ -115,15 +162,19 @@ export default {
     bus.setMenuOptions(this.menuOptions, this.themeColor);
   },
   components: {
-    masonry: Masonry
+    // masonry: Masonry
   },
   methods: {
     setSkillBar(percent) {
       return percent;
+    },
+    toggleModal() {
+      this.projectModal = !this.projectModal;
     }
   }
 };
 </script>
+
 <style lang="scss">
 .home {
   background-color: $primary;
@@ -138,17 +189,17 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
     align-items: center;
-    &__wrapper{
+    &__wrapper {
       position: relative;
       &--img {
         height: calc(100vh - 250px);
         position: relative;
         z-index: 100;
       }
-      &::after{
+      &::after {
         content: "";
         height: 200px;
-        left:0;
+        left: 0;
         // top: 50%;
         // transform: translateY(-50%);
         width: 100%;
@@ -173,11 +224,85 @@ export default {
     }
   }
 }
-.masonry {
+.projects {
   text-align: center;
   height: 100vh;
   display: flex;
   align-items: center;
+  position: relative;
+  &__wrapper-tag {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 75%;
+    flex: 0 1 65%;
+    margin: 0 auto;
+    background-color: $grey_3;
+  }
+  &__tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20pt;
+    text-transform: capitalize;
+  }
+  .project {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $grey_3;
+    z-index: 1000;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    transition: all 1s cubic-bezier(0.17, 0.67, 0.45, 1.25);
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 75%;
+      background: teal;
+    }
+    &__description {
+      width: 75%;
+      margin: 0 auto;
+    }
+    &__techs {
+      display: flex;
+      justify-content: space-around;
+    }
+    &.show {
+      left: 0;
+    }
+    &.hidden {
+      left: 100vw;
+    }
+    .close {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      top: 1rem;
+      right: 1.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &::after,
+      &::before {
+        content: "";
+        height: 100%;
+        width: 20%;
+        position: absolute;
+        background-color: $secondary;
+      }
+      &::after {
+        transform: rotate(-40deg);
+      }
+      &::before {
+        transform: rotate(40deg);
+      }
+    }
+  }
 }
 .about-me {
   display: grid;
@@ -314,6 +439,49 @@ export default {
       height: auto;
       margin-bottom: 0;
       padding-top: 1.5rem;
+    }
+  }
+}
+@media (max-width: 768px) {
+  .about-me {
+    &__title,
+    &__description {
+      grid-column: -3 / -1;
+    }
+    &__img,
+    &__skills {
+      display: none;
+    }
+  }
+  .contact {
+    &__info-wrapp {
+      display: none;
+    }
+    &-form,
+    &__title {
+      grid-column: -3 / -1;
+      text-align: center;
+    }
+  }
+}
+@media (max-width: 576px) {
+  .welcome {
+    .featured {
+      grid-template-columns: 1fr;
+      &__wrapper {
+        text-align: center;
+      }
+      &__info {
+        display: none;
+      }
+    }
+  }
+}
+@media (max-width: 414px) {
+  .contact {
+    &-form {
+      width: 75%;
+      margin: 0 auto;
     }
   }
 }

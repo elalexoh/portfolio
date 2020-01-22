@@ -17,7 +17,7 @@
 
     <!-- Contact info -->
     <div class="footer__contact">
-      <a class="footer__contact--email" href = "mailto: fred_dev@gmail.com" >Fred_dev@gmail.com</a>
+      <a class="footer__contact--email" href="mailto: fred_dev@gmail.com">Fred_dev@gmail.com</a>
       <!-- <p class="footer__contact--phne">+99 999-9999</p> -->
     </div>
   </footer>
@@ -51,6 +51,13 @@ export default {};
     }
     .accent {
       padding: 0.5rem 0.5rem;
+    }
+  }
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+    &__social-media,
+    &__contact {
+      display: none;
     }
   }
 }

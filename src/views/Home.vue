@@ -12,7 +12,7 @@
         </div>
         <!-- image -->
         <div class="featured__wrapper">
-          <img class="featured__wrapper--img" src="@/assets/img/deeply.png" alt="hero">
+          <img class="featured__wrapper--img" src="@/assets/img/deeply.png" alt="hero" />
         </div>
       </section>
     </article>
@@ -20,7 +20,7 @@
     <!-- projects -->
     <article id="projects" class="projects">
       <!-- Project section title -->
-      <section>
+      <section class="projects__title--wrapper">
         <h2 class="projects__title">Projects</h2>
       </section>
       <!-- Projects Tags -->
@@ -28,13 +28,13 @@
         <div class="projects__tag pointer" @click="toggleModal()">
           <h3>spa's</h3>
         </div>
-        <div class="projects__tag pointer">
+        <div class="projects__tag pointer" @click="toggleModal()">
           <h3>Landing Page's</h3>
         </div>
-        <div class="projects__tag pointer">
+        <div class="projects__tag pointer" @click="toggleModal()">
           <h3>e-commerce's</h3>
         </div>
-        <div class="projects__tag pointer">
+        <div class="projects__tag pointer" @click="toggleModal()">
           <h3>blog's</h3>
         </div>
       </section>
@@ -71,7 +71,7 @@
         <span class="accent">me</span>
       </h2>
       <!-- image -->
-      <img class="img-fluid about-me__img" src="@/assets/img/about-me.png" alt="hero">
+      <img class="img-fluid about-me__img" src="@/assets/img/about-me.png" alt="hero" />
       <!-- description -->
       <p
         class="about-me__description"
@@ -120,8 +120,8 @@
         <a class="contact__anchor contact__anchor--phone" href="#">+58 424-178-5377</a>
       </div>
       <div class="contact-form">
-        <input class="contact-form__input" placeholder="Name" type="text" name="name" id>
-        <input class="contact-form__input" placeholder="Email" type="email" name="email" id>
+        <input class="contact-form__input" placeholder="Name" type="text" name="name" id />
+        <input class="contact-form__input" placeholder="Email" type="email" name="email" id />
         <textarea
           class="contact-form__input contact-form__input--textarea"
           name="message"
@@ -439,6 +439,18 @@ export default {
       height: auto;
       margin-bottom: 0;
       padding-top: 1.5rem;
+    }
+  }
+}
+@media (max-width: 991px) {
+  .projects {
+    flex-direction: column;
+    justify-content: space-around;
+    &__title--wrapper {
+      padding: 1.5rem 0;
+    }
+    &__wrapper-tag {
+      width: 75%;
     }
   }
 }

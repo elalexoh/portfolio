@@ -14,6 +14,11 @@ npm run serve
 ```
 npm run build
 ```
+### depply for production (Github pages)
+```
+bash deploy.sh 
+```
+
 
 ### Lints and fixes files
 ```

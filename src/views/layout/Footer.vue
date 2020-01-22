@@ -11,13 +11,13 @@
 
     <!-- Menu Social Media -->
     <div class="footer__social-media">
-      <a href class="btn btn-primary">Github</a>
-      <a href class="btn btn-primary">Codepen</a>
+      <a href="https://github.com/elalexoh" target="_blank" class="btn btn-primary">Github</a>
+      <a href="https://codepen.io/Deeply" target="_blank" class="btn btn-primary">Codepen</a>
     </div>
 
     <!-- Contact info -->
     <div class="footer__contact">
-      <p class="footer__contact--email">email@email.com</p>
+      <a class="footer__contact--email" href="mailto: fred_dev@gmail.com">Fred_dev@gmail.com</a>
       <!-- <p class="footer__contact--phne">+99 999-9999</p> -->
     </div>
   </footer>
@@ -51,6 +51,13 @@ export default {};
     }
     .accent {
       padding: 0.5rem 0.5rem;
+    }
+  }
+  @media (max-width: 991px) {
+    grid-template-columns: 1fr;
+    &__social-media,
+    &__contact {
+      display: none;
     }
   }
 }

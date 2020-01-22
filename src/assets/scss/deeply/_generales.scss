@@ -11,12 +11,20 @@ body {
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
+
+  &__top {
+    background-position: top center;
+  }
 }
 
 h1,
 h2 {
   font-size: 40pt;
   text-transform: uppercase;
+
+  @media (max-width: 576px) {
+    font-size: 30pt;
+  }
 }
 
 .btn {
@@ -68,4 +76,8 @@ html {
     top: 100%;
     transform: translateY(-50%);
   }
+}
+
+.hidden {
+  display: none;
 }

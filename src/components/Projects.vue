@@ -4,57 +4,185 @@
     <section class="projects__title--wrapper">
       <h2 class="projects__title">Projects</h2>
     </section>
+
     <!-- Projects Tags -->
     <section class="projects__wrapper-tag">
-      <div class="projects__tag pointer" @click="toggleModal()">
-        <h3>spa's</h3>
-      </div>
-      <div class="projects__tag pointer" @click="toggleModal()">
-        <h3>Landing Page's</h3>
-      </div>
-      <div class="projects__tag pointer" @click="toggleModal()">
-        <h3>e-commerce's</h3>
-      </div>
-      <div class="projects__tag pointer" @click="toggleModal()">
-        <h3>blog's</h3>
+      <div
+        class="projects__tag pointer"
+        @click="toggleModal(project)"
+        v-for="(project, i) in projects"
+        :key="i"
+      >
+        <h3>{{project.label}}</h3>
       </div>
     </section>
+
     <!-- modal for each project -->
     <section class="project modal" :class="(projectModal)? 'active' : 'hidden'">
       <!-- carousel -->
       <section class>
-        <h2 class="project__title beta">carousel</h2>
+        <carousel :items="1" :autoplay="true" :nav="false">
+          <h2 class="project__title beta">carousel</h2>
+          <h2 class="project__title beta">carousel</h2>
+          <h2 class="project__title beta">carousel</h2>
+          <h2 class="project__title beta">carousel</h2>
+          <h2 class="project__title beta">carousel</h2>
+        </carousel>
       </section>
       <!-- project description -->
       <section class="project__info">
-        <h2>Project Title</h2>
+        <h2 class="project__title">{{getContent(this.selectedProject, 'title')}}</h2>
         <div class="project__description">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga numquam optio omnis ab voluptates magnam veniam alias vero praesentium, magni accusantium quisquam nisi sunt, dignissimos sapiente consectetur enim voluptate facilis.</p>
+          <p>{{getContent(this.selectedProject, 'description')}}</p>
         </div>
         <ul class="project__techs">
-          <li class="project__techs-tech">Bootstrap</li>
-          <li class="project__techs-tech">Wordpress</li>
-          <li class="project__techs-tech">Woocommerce</li>
-          <li class="project__techs-tech">VueJS</li>
-          <li class="project__techs-tech">Jquery</li>
+          <li
+            v-for="(tech, i) in getContent(this.selectedProject, 'techs')"
+            :key="i"
+          >{{ tech.title }}</li>
         </ul>
       </section>
       <div class="close pointer" @click="toggleModal()"></div>
     </section>
+
     <!-- <masonry/> -->
   </article>
 </template>
 <script>
+import carousel from "vue-owl-carousel2";
 export default {
   data() {
     return {
-      projectModal: false
+      projectModal: false,
+      projects: [
+        {
+          label: "spa",
+          resources: [
+            {
+              title: "The Lux Properties",
+              description: "Proyecto de propiedades",
+              techs: [
+                { title: "NuxtJs" },
+                { title: "Boostrap" },
+                { title: "Javascript" }
+              ],
+              resources: [
+                {
+                  title: "Home page",
+                  source: "url"
+                },
+                {
+                  title: "Contact page",
+                  source: "url"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "landing page",
+          resources: [
+            {
+              title: "Compass vital health",
+              description: "Proyecto de propiedades",
+              techs: [
+                { title: "Wordpress" },
+                { title: "Boostrap" },
+                { title: "Javascript" },
+                { title: "Jquery" },
+                { title: "Sage8" }
+              ],
+              resources: [
+                {
+                  title: "Home page",
+                  source: "url"
+                },
+                {
+                  title: "Contact page",
+                  source: "url"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "blog",
+          resources: [
+            {
+              title: "Behrens",
+              description: "Proyecto de propiedades",
+              techs: [
+                { title: "Wordpress" },
+                { title: "Boostrap" },
+                { title: "Jquery" },
+                { title: "Sage8" }
+              ],
+              resources: [
+                {
+                  title: "Home page",
+                  source: "url"
+                },
+                {
+                  title: "Contact page",
+                  source: "url"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          label: "eCommerce",
+          resources: [
+            {
+              title: "Pick & Fly",
+              description: "Proyecto de propiedades",
+              techs: [
+                { title: "Wordpress" },
+                { title: "Woocommerce" },
+                { title: "Boostrap" },
+                { title: "Jquery" },
+                { title: "Javascript" },
+                { title: "Sage9" }
+              ],
+              resources: [
+                {
+                  title: "Home page",
+                  source: "url"
+                },
+                {
+                  title: "Contact page",
+                  source: "url"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      selectedProject: {}
     };
   },
+  mounted() {
+    console.info(!JSON.stringify(this.selectedProject));
+  },
   methods: {
-    toggleModal() {
+    toggleModal(project) {
       this.projectModal = !this.projectModal;
+      if (project) {
+        this.setProject(project);
+      }
+    },
+    setProject(project) {
+      this.selectedProject = project;
+    },
+    getContent(project, content) {
+      console.info(project, content);
+      return JSON.stringify(this.selectedProject) === "{}"
+        ? "hey"
+        : this.selectedProject.resources[0][content];
     }
+  },
+  components: {
+    carousel
   }
 };
 </script>
@@ -92,6 +220,9 @@ export default {
     align-items: center;
     left: 0;
     transition: all 1s cubic-bezier(0.17, 0.67, 0.45, 1.25);
+    &__title {
+      padding: 0 1.5rem;
+    }
     &__info {
       display: flex;
       flex-direction: column;

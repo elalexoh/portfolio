@@ -20,13 +20,12 @@
     <!-- modal for each project -->
     <section class="project modal" :class="(projectModal)? 'active' : 'hidden'">
       <!-- carousel -->
-      <section class>
+      <section v-if="JSON.stringify(this.selectedProject) !== '{}'">
         <carousel :items="1" :autoplay="true" :nav="false">
-          <h2 class="project__title beta">carousel</h2>
-          <h2 class="project__title beta">carousel</h2>
-          <h2 class="project__title beta">carousel</h2>
-          <h2 class="project__title beta">carousel</h2>
-          <h2 class="project__title beta">carousel</h2>
+          <h2
+            v-for="(item, index) in selectedProject.resources[0].content"
+            :key="index"
+          >{{item.title}}</h2>
         </carousel>
       </section>
       <!-- project description -->
@@ -66,14 +65,30 @@ export default {
                 { title: "Boostrap" },
                 { title: "Javascript" }
               ],
-              resources: [
+              content: [
                 {
                   title: "Home page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 },
                 {
                   title: "Contact page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 }
               ]
             }
@@ -158,11 +173,19 @@ export default {
           ]
         }
       ],
-      selectedProject: {}
+      selectedProject: {},
+      images: [
+        "https://placeimg.com/200/200/any?1",
+        "https://placeimg.com/200/200/any?2",
+        "https://placeimg.com/200/200/any?3",
+        "https://placeimg.com/200/200/any?4"
+      ]
     };
   },
-  mounted() {
-    console.info(!JSON.stringify(this.selectedProject));
+  watch: {
+    selectedProject: selectedProject => {
+      console.log(selectedProject);
+    }
   },
   methods: {
     toggleModal(project) {
@@ -175,7 +198,6 @@ export default {
       this.selectedProject = project;
     },
     getContent(project, content) {
-      console.info(project, content);
       return JSON.stringify(this.selectedProject) === "{}"
         ? "hey"
         : this.selectedProject.resources[0][content];

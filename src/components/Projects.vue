@@ -67,7 +67,7 @@ export default {
               ],
               content: [
                 {
-                  title: "Home page",
+                  title: "Home page1",
                   source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 },
                 {
@@ -107,14 +107,30 @@ export default {
                 { title: "Jquery" },
                 { title: "Sage8" }
               ],
-              resources: [
+              content: [
+                {
+                  title: "Home page2",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
                 {
                   title: "Home page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 },
                 {
                   title: "Contact page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 }
               ]
             }
@@ -132,14 +148,30 @@ export default {
                 { title: "Jquery" },
                 { title: "Sage8" }
               ],
-              resources: [
+              content: [
                 {
                   title: "Home page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 },
                 {
                   title: "Contact page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 }
               ]
             }
@@ -159,14 +191,30 @@ export default {
                 { title: "Javascript" },
                 { title: "Sage9" }
               ],
-              resources: [
+              content: [
                 {
                   title: "Home page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                },
+                {
+                  title: "Home page",
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 },
                 {
                   title: "Contact page",
-                  source: "url"
+                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 }
               ]
             }

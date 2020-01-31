@@ -20,14 +20,25 @@
     <!-- modal for each project -->
     <section class="project modal" :class="(projectModal)? 'active' : 'hidden'">
       <!-- carousel -->
-      <section v-if="JSON.stringify(this.selectedProject) !== '{}'">
-        <carousel :items="1" :autoplay="true" :nav="false">
-          <h2
+      <!-- <section v-if="JSON.stringify(this.selectedProject) !== '{}'" class="project__carousel">
+        <carousel :items="1" :autoplay="true" :nav="false" @updated="owlUpdate()">
+          <img
             v-for="(item, index) in selectedProject.resources[0].content"
             :key="index"
-          >{{item.title}}</h2>
+            :src="item.source"
+            class="project__img"
+          />
         </carousel>
+      </section>-->
+      <section class="project__carousel" v-if="JSON.stringify(this.selectedProject) !== '{}'">
+        <img
+          v-for="(item, index) in selectedProject.resources[0].content"
+          :key="index"
+          :src="item.source"
+          class="project__img"
+        />
       </section>
+
       <!-- project description -->
       <section class="project__info">
         <h2 class="project__title">{{getContent(this.selectedProject, 'title')}}</h2>
@@ -38,6 +49,7 @@
           <li
             v-for="(tech, i) in getContent(this.selectedProject, 'techs')"
             :key="i"
+            class="project__tech"
           >{{ tech.title }}</li>
         </ul>
       </section>
@@ -48,7 +60,7 @@
   </article>
 </template>
 <script>
-import carousel from "vue-owl-carousel2";
+// import carousel from "vue-owl-carousel2";
 export default {
   data() {
     return {
@@ -59,37 +71,39 @@ export default {
           resources: [
             {
               title: "The Lux Properties",
-              description: "Proyecto de propiedades",
+              description:
+                "Este es un proyecto del area inmobiliaria, diseñado para ser amigable con el usuario e intuitivo, cuenta con pagina de aterrisaje y un sistema administrativo para la gestion interna de las propiedades.",
               techs: [
-                { title: "NuxtJs" },
-                { title: "Boostrap" },
-                { title: "Javascript" }
+                { title: "Javascript" },
+                { title: "Bootstrap" },
+                { title: "VueJs" },
+                { title: "NuxtJs" }
               ],
               content: [
                 {
-                  title: "Home page1",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Contact page",
+                  title: "Inicio",
                   source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
                 }
+                // {
+                //   title: "Home page",
+                //   source: require("@/assets/img/proyects/lux/theluxproperties (2).png")
+                // },
+                // {
+                //   title: "Home page",
+                //   source: require("@/assets/img/proyects/lux/theluxproperties (3).png")
+                // },
+                // {
+                //   title: "Home page",
+                //   source: require("@/assets/img/proyects/lux/theluxproperties (4).png")
+                // },
+                // {
+                //   title: "Home page",
+                //   source: require("@/assets/img/proyects/lux/theluxproperties (5).png")
+                // },
+                // {
+                //   title: "Contact page",
+                //   source: require("@/assets/img/proyects/lux/theluxproperties (6).png")
+                // }
               ]
             }
           ]
@@ -99,38 +113,19 @@ export default {
           resources: [
             {
               title: "Compass vital health",
-              description: "Proyecto de propiedades",
+              description:
+                "Desarrollada en Wordpress, Compass Vital Health fue diseñada para una empresa dedicada a vender suplementos alimenticios, y servicios de coaching, enfocada a un público juvenil y contemporaneo.",
               techs: [
                 { title: "Wordpress" },
-                { title: "Boostrap" },
+                { title: "Bootstrap" },
                 { title: "Javascript" },
                 { title: "Jquery" },
                 { title: "Sage8" }
               ],
               content: [
                 {
-                  title: "Home page2",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Contact page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                  title: "Inicio",
+                  source: require("@/assets/img/proyects/compass/compass.jpg")
                 }
               ]
             }
@@ -141,38 +136,47 @@ export default {
           resources: [
             {
               title: "Behrens",
-              description: "Proyecto de propiedades",
+              description:
+                "Behrens es una empresa con más de 115 años de compromiso con la salud del pueblo venezolano, esta pagina fue diseñada para atender a una empresa conservadora pero al mismo tiempo a la vanguardia.",
               techs: [
                 { title: "Wordpress" },
-                { title: "Boostrap" },
+                { title: "Bootstrap" },
                 { title: "Jquery" },
                 { title: "Sage8" }
               ],
               content: [
                 {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Contact page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                  title: "Inicio",
+                  source: require("@/assets/img/proyects/behrens/behrens (1).jpg")
                 }
+                // {
+                //   title: "Blog",
+                //   source: require("@/assets/img/proyects/behrens/behrens (2).png")
+                // },
+                // {
+                //   title: "Interna de blog",
+                //   source: require("@/assets/img/proyects/behrens/behrens (3).jpg")
+                // },
+                // {
+                //   title: "Interna",
+                //   source: require("@/assets/img/proyects/behrens/behrens (4).png")
+                // },
+                // {
+                //   title: "Interna",
+                //   source: require("@/assets/img/proyects/behrens/behrens (5).png")
+                // },
+                // {
+                //   title: "Interna",
+                //   source: require("@/assets/img/proyects/behrens/behrens (6).jpg")
+                // },
+                // {
+                //   title: "Interna",
+                //   source: require("@/assets/img/proyects/behrens/behrens (7).jpg")
+                // },
+                // {
+                //   title: "Interna",
+                //   source: require("@/assets/img/proyects/behrens/behrens (8).jpg")
+                // }
               ]
             }
           ]
@@ -182,11 +186,12 @@ export default {
           resources: [
             {
               title: "Pick & Fly",
-              description: "Proyecto de propiedades",
+              description:
+                "E-commerce para prestigiosa empresa Venezolana, donde puedes hacer compras antes de un vuelo, para luego retirar en el aeropuerto Satelite de Maiquetía.",
               techs: [
                 { title: "Wordpress" },
                 { title: "Woocommerce" },
-                { title: "Boostrap" },
+                { title: "Bootstrap" },
                 { title: "Jquery" },
                 { title: "Javascript" },
                 { title: "Sage9" }
@@ -194,50 +199,33 @@ export default {
               content: [
                 {
                   title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Home page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
-                },
-                {
-                  title: "Contact page",
-                  source: require("@/assets/img/proyects/lux/theluxproperties (1).png")
+                  source: require("@/assets/img/proyects/pickandfly/pickandfly (1).jpg")
                 }
+                // {
+                //   title: "Home page",
+                //   source: require("@/assets/img/proyects/pickandfly/pickandfly (2).png")
+                // },
+                // {
+                //   title: "Home page",
+                //   source: require("@/assets/img/proyects/pickandfly/pickandfly (3).png")
+                // }
               ]
             }
           ]
         }
       ],
-      selectedProject: {},
-      images: [
-        "https://placeimg.com/200/200/any?1",
-        "https://placeimg.com/200/200/any?2",
-        "https://placeimg.com/200/200/any?3",
-        "https://placeimg.com/200/200/any?4"
-      ]
+      selectedProject: {}
     };
   },
   watch: {
-    selectedProject: selectedProject => {
-      console.log(selectedProject);
-    }
+    // selectedProject: selectedProject => {
+    //   console.log(selectedProject);
+    // }
   },
   methods: {
     toggleModal(project) {
       this.projectModal = !this.projectModal;
+
       if (project) {
         this.setProject(project);
       }
@@ -252,7 +240,7 @@ export default {
     }
   },
   components: {
-    carousel
+    // carousel
   }
 };
 </script>
@@ -285,11 +273,20 @@ export default {
     background-color: $grey_3;
     z-index: 1000;
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 45% 55%;
     justify-content: center;
     align-items: center;
     left: 0;
     transition: all 1s cubic-bezier(0.17, 0.67, 0.45, 1.25);
+    &__carousel {
+      // display: flex;
+      // align-items: center;
+      height: 100%;
+      overflow-y: auto;
+    }
+    &__img {
+      max-width: 100%;
+    }
     &__title {
       padding: 0 1.5rem;
     }
@@ -298,7 +295,7 @@ export default {
       flex-direction: column;
       justify-content: space-around;
       height: 75%;
-      background: teal;
+      // background: teal;
     }
     &__description {
       width: 75%;
@@ -306,7 +303,12 @@ export default {
     }
     &__techs {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-around;
+    }
+    &__tech {
+      flex: 0 1 25%;
+      margin-bottom: 1rem;
     }
     &.show {
       left: 0;
@@ -352,6 +354,24 @@ export default {
     }
     .project {
       grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 1.5rem;
+      &__info {
+        height: 100%;
+      }
+      &__carousel {
+        max-height: 50vh;
+        overflow-y: auto;
+      }
+      &__img {
+        max-width: 100%;
+      }
+      &__carousel {
+        order: 2;
+      }
+      &__info {
+        order: 1;
+      }
     }
   }
 }
@@ -386,12 +406,36 @@ export default {
     &__tag {
       font-size: 17pt;
     }
+    .project {
+      &__tech {
+        flex: 0 1 33%;
+        font-size: 11pt;
+      }
+      &__title {
+        font-size: 20pt;
+      }
+    }
   }
 }
 @media (max-width: 414px) {
   .projects {
     &__tag {
       font-size: 15pt;
+    }
+    .project {
+      grid-template-rows: 1fr;
+      &__carousel {
+        max-height: 100vh;
+      }
+      &__info {
+        display: none;
+      }
+      .close {
+        &::after,
+        &::before {
+          background-color: $primary;
+        }
+      }
     }
   }
 }

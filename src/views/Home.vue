@@ -28,7 +28,7 @@
         <span class="accent">me</span>
       </h2>
       <!-- image -->
-      <img class="img-fluid about-me__img" src="@/assets/img/about-me.png" alt="hero" />
+      <img class="img-fluid about-me__img" src="@/assets/img/icon.png" alt="hero" />
       <!-- description -->
       <p
         class="about-me__description"

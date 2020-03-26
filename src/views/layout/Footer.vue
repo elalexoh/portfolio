@@ -3,9 +3,9 @@
     <!-- Copyright -->
     <div class="footer__copyright">
       <p class="footer__copyright--text">
-        <span>@ 2019</span>
+        <span>@ 2020</span>
         <a class="accent" href>Deeply_Weird</a>
-        <span>All rights reserved</span>
+        <span>Todos los derechos reservados</span>
       </p>
     </div>
 
@@ -17,7 +17,7 @@
 
     <!-- Contact info -->
     <div class="footer__contact">
-      <a class="footer__contact--email" href="mailto: fred_dev@gmail.com">Fred_dev@gmail.com</a>
+      <a class="footer__contact--email" href="mailto: fred_dev@gmail.com">Deeply_weird_dev@gmail.com</a>
       <!-- <p class="footer__contact--phne">+99 999-9999</p> -->
     </div>
   </footer>

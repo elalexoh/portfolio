@@ -17,7 +17,7 @@
 
     <!-- Contact info -->
     <div class="footer__contact">
-      <a class="footer__contact--email" href="mailto: fred_dev@gmail.com">Deeply_weird_dev@gmail.com</a>
+      <a class="footer__contact--email" href="mailto: fred_dev@gmail.com">Deeply.weird.dev@gmail.com</a>
       <!-- <p class="footer__contact--phne">+99 999-9999</p> -->
     </div>
   </footer>

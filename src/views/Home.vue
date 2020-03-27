@@ -1,6 +1,6 @@
 <template>
   <section class="home">
-    <div class="prueba-routero">{{ route }}</div>
+    <!-- <div class="prueba-routero">{{ route }}</div> -->
     <!-- featured content -->
     <article id="featured" class="welcome">
       <section class="featured">
@@ -73,7 +73,7 @@
         <a
           class="contact__anchor contact__anchor--email"
           href="mailto: fred_dev@gmail.com"
-        >Deeply_weird_dev@gmail.com</a>
+        >Deeply.weird.dev@gmail.com</a>
         <a class="contact__anchor contact__anchor--phone" href="#">+58 424-178-5377</a>
       </div>
       <div class="contact-form">

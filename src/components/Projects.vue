@@ -1,66 +1,45 @@
 <template>
   <article id="projects" class="projects">
-    <!-- Project section title -->
-    <section class="projects__title--wrapper">
-      <h2 class="projects__title">proyectos</h2>
-    </section>
-
-    <!-- Projects Tags -->
-    <section class="projects__wrapper-tag">
-      <div
-        class="projects__tag pointer"
-        @click="activeModal(project)"
-        v-for="(project, i) in projects"
-        :key="i"
+    <div class="wrapper">
+      <slick
+        ref="slick"
+        :options="slickOptions"
+        @afterChange="handleAfterChange"
+        @beforeChange="handleBeforeChange"
+        @breakpoint="handleBreakpoint"
+        @destroy="handleDestroy"
+        @edge="handleEdge"
+        @init="handleInit"
+        @reInit="handleReInit"
+        @setPosition="handleSetPosition"
+        @swipe="handleSwipe"
+        @lazyLoaded="handleLazyLoaded"
+        @lazyLoadError="handleLazeLoadError"
       >
-        <h3>{{project.label}}</h3>
-      </div>
-    </section>
-
-    <!-- modal for each project -->
-    <section
-      class="project modal hidden"
-      :class="camelCase(project.label)"
-      v-for="(project, i) in projects"
-      :key="i"
-    >
-      <!-- project images -->
-      <section class="project__carousel">
-        <img
-          v-for="(item, index) in project.resources[0].content"
-          :key="index"
-          :src="item.source"
-          class="project__img"
-        >
-      </section>
-      <!-- project description -->
-      <section class="project__info">
-        <h2 class="project__title">
-          <a
-            :href="project.resources[0].link"
-            target="_blank"
-            rel="noopener noreferrer"
-          >{{ project.resources[0].title }}</a>
-        </h2>
-        <div class="project__description">
-          <p>{{ project.resources[0].description }}</p>
+        <div>
+          <img src="http://placehold.it/500" alt />
         </div>
-        <ul class="project__techs">
-          <li
-            v-for="(tech, i) in project.resources[0].techs"
-            :key="i"
-            class="project__tech"
-          >{{ tech.title }}</li>
-        </ul>
-      </section>
-      <div class="close pointer" @click="activeModal(project)"></div>
-    </section>
-
-    <!-- <masonry/> -->
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+      </slick>
+    </div>
   </article>
 </template>
 <script>
-// import carousel from "vue-owl-carousel2";
+import Slick from "vue-slick";
+// import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+import "slick-carousel/slick/slick.css";
+
 export default {
   data() {
     return {
@@ -218,7 +197,12 @@ export default {
           ]
         }
       ],
-      selectedProject: {}
+      selectedProject: {},
+      slickOptions: {
+        slidesToShow: 1,
+        autoplay: true
+        // Any other options that can be got from plugin documentation
+      }
     };
   },
   watch: {
@@ -255,14 +239,67 @@ export default {
       return JSON.stringify(this.selectedProject) === "{}"
         ? "hey"
         : this.selectedProject.resources[0][content];
+    },
+    next() {
+      this.$refs.slick.next();
+    },
+
+    prev() {
+      this.$refs.slick.prev();
+    },
+
+    reInit() {
+      // Helpful if you have to deal with v-for to update dynamic lists
+      this.$nextTick(() => {
+        this.$refs.slick.reSlick();
+      });
+    },
+
+    // Events listeners
+    handleAfterChange(event, slick, currentSlide) {
+      console.log("handleAfterChange", event, slick, currentSlide);
+    },
+    handleBeforeChange(event, slick, currentSlide, nextSlide) {
+      console.log("handleBeforeChange", event, slick, currentSlide, nextSlide);
+    },
+    handleBreakpoint(event, slick, breakpoint) {
+      console.log("handleBreakpoint", event, slick, breakpoint);
+    },
+    handleDestroy(event, slick) {
+      console.log("handleDestroy", event, slick);
+    },
+    handleEdge(event, slick, direction) {
+      console.log("handleEdge", event, slick, direction);
+    },
+    handleInit(event, slick) {
+      console.log("handleInit", event, slick);
+    },
+    handleReInit(event, slick) {
+      console.log("handleReInit", event, slick);
+    },
+    handleSetPosition(event, slick) {
+      console.log("handleSetPosition", event, slick);
+    },
+    handleSwipe(event, slick, direction) {
+      console.log("handleSwipe", event, slick, direction);
+    },
+    handleLazyLoaded(event, slick, image, imageSource) {
+      console.log("handleLazyLoaded", event, slick, image, imageSource);
+    },
+    handleLazeLoadError(event, slick, image, imageSource) {
+      console.log("handleLazeLoadError", event, slick, image, imageSource);
     }
   },
   components: {
-    // carousel
+    Slick
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.wrapper {
+  height: 500px;
+  width: 500px;
+}
 .projects {
   text-align: center;
   height: 100vh;

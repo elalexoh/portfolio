@@ -94,6 +94,7 @@
 <script>
 import { bus } from "@/main.js";
 import Projects from "@/components/Projects";
+import { mapMutations } from 'vuex';
 
 export default {
   props: ["setColorTheme"],
@@ -118,6 +119,7 @@ export default {
   mounted() {
     this.setColorTheme(this.themeColor);
     bus.setMenuOptions(this.menuOptions, this.themeColor);
+    this.prueba();
   },
   computed: {
     route: function() {
@@ -126,12 +128,13 @@ export default {
   },
   components: {
     // masonry: Masonry
-    Projects
+    Projects,
   },
   methods: {
     setSkillBar(percent) {
       return percent;
-    }
+    },
+    ...mapMutations(['prueba'])
   }
 };
 </script>

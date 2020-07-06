@@ -157,10 +157,21 @@ body {
   background-repeat: no-repeat;
 }
 
+.bg-img__top {
+  background-position: top center;
+}
+
 h1,
 h2 {
   font-size: 40pt;
   text-transform: uppercase;
+}
+
+@media (max-width: 576px) {
+  h1,
+  h2 {
+    font-size: 30pt;
+  }
 }
 
 .btn {

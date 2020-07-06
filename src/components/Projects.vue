@@ -1,66 +1,45 @@
 <template>
   <article id="projects" class="projects">
-    <!-- Project section title -->
-    <section class="projects__title--wrapper">
-      <h2 class="projects__title">Projects</h2>
-    </section>
-
-    <!-- Projects Tags -->
-    <section class="projects__wrapper-tag">
-      <div
-        class="projects__tag pointer"
-        @click="toggleModal(project)"
-        v-for="(project, i) in projects"
-        :key="i"
+    <div class="wrapper">
+      <slick
+        ref="slick"
+        :options="slickOptions"
+        @afterChange="handleAfterChange"
+        @beforeChange="handleBeforeChange"
+        @breakpoint="handleBreakpoint"
+        @destroy="handleDestroy"
+        @edge="handleEdge"
+        @init="handleInit"
+        @reInit="handleReInit"
+        @setPosition="handleSetPosition"
+        @swipe="handleSwipe"
+        @lazyLoaded="handleLazyLoaded"
+        @lazyLoadError="handleLazeLoadError"
       >
-        <h3>{{project.label}}</h3>
-      </div>
-    </section>
-
-    <!-- modal for each project -->
-    <section class="project modal" :class="(projectModal)? 'active' : 'hidden'">
-      <!-- carousel -->
-      <!-- <section v-if="JSON.stringify(this.selectedProject) !== '{}'" class="project__carousel">
-        <carousel :items="1" :autoplay="true" :nav="false" @updated="owlUpdate()">
-          <img
-            v-for="(item, index) in selectedProject.resources[0].content"
-            :key="index"
-            :src="item.source"
-            class="project__img"
-          />
-        </carousel>
-      </section>-->
-      <section class="project__carousel" v-if="JSON.stringify(this.selectedProject) !== '{}'">
-        <img
-          v-for="(item, index) in selectedProject.resources[0].content"
-          :key="index"
-          :src="item.source"
-          class="project__img"
-        />
-      </section>
-
-      <!-- project description -->
-      <section class="project__info">
-        <h2 class="project__title">{{getContent(this.selectedProject, 'title')}}</h2>
-        <div class="project__description">
-          <p>{{getContent(this.selectedProject, 'description')}}</p>
+        <div>
+          <img src="http://placehold.it/500" alt />
         </div>
-        <ul class="project__techs">
-          <li
-            v-for="(tech, i) in getContent(this.selectedProject, 'techs')"
-            :key="i"
-            class="project__tech"
-          >{{ tech.title }}</li>
-        </ul>
-      </section>
-      <div class="close pointer" @click="toggleModal()"></div>
-    </section>
-
-    <!-- <masonry/> -->
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+        <div>
+          <img src="http://placehold.it/500" alt />
+        </div>
+      </slick>
+    </div>
   </article>
 </template>
 <script>
-// import carousel from "vue-owl-carousel2";
+import Slick from "vue-slick";
+// import "vue-slick-carousel/dist/vue-slick-carousel-theme.css";
+import "slick-carousel/slick/slick.css";
+
 export default {
   data() {
     return {
@@ -71,6 +50,7 @@ export default {
           resources: [
             {
               title: "The Lux Properties",
+              link: "http://dev.theluxproperties.com/",
               description:
                 "Este es un proyecto del area inmobiliaria, diseñado para ser amigable con el usuario e intuitivo, cuenta con pagina de aterrisaje y un sistema administrativo para la gestion interna de las propiedades.",
               techs: [
@@ -113,6 +93,7 @@ export default {
           resources: [
             {
               title: "Compass vital health",
+              link: "http://compass.orugadesarrollo.com/",
               description:
                 "Desarrollada en Wordpress, Compass Vital Health fue diseñada para una empresa dedicada a vender suplementos alimenticios, y servicios de coaching, enfocada a un público juvenil y contemporaneo.",
               techs: [
@@ -136,6 +117,7 @@ export default {
           resources: [
             {
               title: "Behrens",
+              link: "http://behrens.orugadesarrollo.com/",
               description:
                 "Behrens es una empresa con más de 115 años de compromiso con la salud del pueblo venezolano, esta pagina fue diseñada para atender a una empresa conservadora pero al mismo tiempo a la vanguardia.",
               techs: [
@@ -186,6 +168,7 @@ export default {
           resources: [
             {
               title: "Pick & Fly",
+              link: "http://pickandflyve.com/",
               description:
                 "E-commerce para prestigiosa empresa Venezolana, donde puedes hacer compras antes de un vuelo, para luego retirar en el aeropuerto Satelite de Maiquetía.",
               techs: [
@@ -214,7 +197,12 @@ export default {
           ]
         }
       ],
-      selectedProject: {}
+      selectedProject: {},
+      slickOptions: {
+        slidesToShow: 1,
+        autoplay: true
+        // Any other options that can be got from plugin documentation
+      }
     };
   },
   watch: {
@@ -223,8 +211,22 @@ export default {
     // }
   },
   methods: {
+    activeModal(project) {
+      const modal = document.querySelector(
+        `.project.modal.${this.camelCase(project.label)}`
+      );
+      modal.classList.toggle("hidden");
+    },
+    camelCase(str) {
+      return str
+        .replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
+          return index == 0 ? word.toLowerCase() : word.toUpperCase();
+        })
+        .replace(/\s+/g, "");
+    },
     toggleModal(project) {
       this.projectModal = !this.projectModal;
+      console.info(project.label);
 
       if (project) {
         this.setProject(project);
@@ -237,14 +239,67 @@ export default {
       return JSON.stringify(this.selectedProject) === "{}"
         ? "hey"
         : this.selectedProject.resources[0][content];
+    },
+    next() {
+      this.$refs.slick.next();
+    },
+
+    prev() {
+      this.$refs.slick.prev();
+    },
+
+    reInit() {
+      // Helpful if you have to deal with v-for to update dynamic lists
+      this.$nextTick(() => {
+        this.$refs.slick.reSlick();
+      });
+    },
+
+    // Events listeners
+    handleAfterChange(event, slick, currentSlide) {
+      console.log("handleAfterChange", event, slick, currentSlide);
+    },
+    handleBeforeChange(event, slick, currentSlide, nextSlide) {
+      console.log("handleBeforeChange", event, slick, currentSlide, nextSlide);
+    },
+    handleBreakpoint(event, slick, breakpoint) {
+      console.log("handleBreakpoint", event, slick, breakpoint);
+    },
+    handleDestroy(event, slick) {
+      console.log("handleDestroy", event, slick);
+    },
+    handleEdge(event, slick, direction) {
+      console.log("handleEdge", event, slick, direction);
+    },
+    handleInit(event, slick) {
+      console.log("handleInit", event, slick);
+    },
+    handleReInit(event, slick) {
+      console.log("handleReInit", event, slick);
+    },
+    handleSetPosition(event, slick) {
+      console.log("handleSetPosition", event, slick);
+    },
+    handleSwipe(event, slick, direction) {
+      console.log("handleSwipe", event, slick, direction);
+    },
+    handleLazyLoaded(event, slick, image, imageSource) {
+      console.log("handleLazyLoaded", event, slick, image, imageSource);
+    },
+    handleLazeLoadError(event, slick, image, imageSource) {
+      console.log("handleLazeLoadError", event, slick, image, imageSource);
     }
   },
   components: {
-    // carousel
+    Slick
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.wrapper {
+  height: 500px;
+  width: 500px;
+}
 .projects {
   text-align: center;
   height: 100vh;
@@ -265,6 +320,13 @@ export default {
     align-items: center;
     font-size: 20pt;
     text-transform: capitalize;
+    transition: background-color 0.25s ease;
+    &:hover {
+      background-color: $accent;
+      h3 {
+        color: $white;
+      }
+    }
   }
   .project {
     position: absolute;
@@ -278,6 +340,12 @@ export default {
     align-items: center;
     left: 0;
     transition: all 1s cubic-bezier(0.17, 0.67, 0.45, 1.25);
+    &.spa {
+      .project__carousel {
+        display: flex;
+        align-items: center;
+      }
+    }
     &__carousel {
       // display: flex;
       // align-items: center;
@@ -289,13 +357,20 @@ export default {
     }
     &__title {
       padding: 0 1.5rem;
+      a {
+        transition: color 0.5s ease;
+      }
+      &:hover a {
+        color: $accent;
+      }
     }
     &__info {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      margin: 0 auto;
       height: 75%;
-      // background: teal;
+      width: 80%;
     }
     &__description {
       width: 75%;
@@ -332,12 +407,19 @@ export default {
         width: 20%;
         position: absolute;
         background-color: $secondary;
+        transition: background-color 0.5s ease;
       }
       &::after {
         transform: rotate(-40deg);
       }
       &::before {
         transform: rotate(40deg);
+      }
+      &:hover {
+        &::after,
+        &::before {
+          background-color: $accent;
+        }
       }
     }
   }

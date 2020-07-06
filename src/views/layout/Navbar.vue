@@ -26,7 +26,7 @@
     </div>
     <!-- top navbar -->
     <ul class="navbar__options">
-      <router-link class="navbar__option" tag="li" exact active-class="active" to="/">Home</router-link>
+      <router-link class="navbar__option" tag="li" active-class="active" to="/">Inicio</router-link>
       <router-link
         class="navbar__option beta"
         tag="li"

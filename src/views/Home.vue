@@ -1,5 +1,6 @@
 <template>
   <section class="home">
+    <!-- <div class="prueba-routero">{{ route }}</div> -->
     <!-- featured content -->
     <article id="featured" class="welcome">
       <section class="featured">
@@ -12,30 +13,30 @@
         </div>
         <!-- image -->
         <div class="featured__wrapper">
-          <img class="featured__wrapper--img" src="@/assets/img/deeply.png" alt="hero" />
+          <img class="featured__wrapper--img" src="@/assets/img/deeply.png" alt="hero">
         </div>
       </section>
     </article>
 
     <!-- projects -->
-    <Projects />
+    <Projects/>
 
     <!-- About me -->
     <article id="about-me" class="about-me">
       <!-- title -->
       <h2 class="about-me__title">
-        About
-        <span class="accent">me</span>
+        Sobre
+        <span class="accent">Mi</span>
       </h2>
       <!-- image -->
-      <img class="img-fluid about-me__img" src="@/assets/img/icon.png" alt="hero" />
+      <img class="img-fluid about-me__img" src="@/assets/img/icon.png" alt="hero">
       <!-- description -->
       <p
         class="about-me__description"
-      >Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus accusamus dolorum beatae, adipisci at nesciunt! Incidunt totam, dolores esse, magnam illum nostrum nesciunt fugit rerum architecto in voluptatem, eligendi earum! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ea quos, perferendis natus, vero non odit quam unde, obcaecati sed deleniti veritatis facere! Sequi facere ipsa voluptates voluptatem architecto vitae iure!</p>
+      >Soy un apasionado del diseño y el desarrollo web, mis grandes amores el dibujo y el arte siempre van de la mano cuando desarrollo un sitio, y aunque soy completamente capaz de seguir el criterio de un diseñador, siempre añado un poco de mi en los proyectos que participo.</p>
       <!-- skills -->
       <div class="about-me__skills skills">
-        <h3 class="skills__title uppercase">skills</h3>
+        <h3 class="skills__title uppercase text-center">Mis habilidades</h3>
         <div class="skills__skill" v-for="skill in skills" :key="skill.id">
           <h4 class="skills__skill-title">{{ skill.title }}</h4>
           <span class="skills__skill-percent">{{ skill.range }}</span>
@@ -65,26 +66,25 @@
 
     <!-- Contact -->
     <article id="contact" class="contact">
-      <h2 class="contact__title beta">Contacts</h2>
+      <h2 class="contact__title beta">Contacto</h2>
       <div class="contact__info-wrapp">
-        <p class="contact__info">have a question, offers on cooperation?</p>
-        <p class="contact__info">feel free to contact me!</p>
-        <p class="contact__info">Venezuela</p>
+        <p class="contact__info">¿Tiene alguna pregunta, o propuesta?</p>
+        <p class="contact__info">¡Sientete libre de contactarme!</p>
         <a
           class="contact__anchor contact__anchor--email"
           href="mailto: fred_dev@gmail.com"
-        >Fred_dev@gmail.com</a>
+        >Deeply.weird.dev@gmail.com</a>
         <a class="contact__anchor contact__anchor--phone" href="#">+58 424-178-5377</a>
       </div>
       <div class="contact-form">
-        <input class="contact-form__input" placeholder="Name" type="text" name="name" id />
-        <input class="contact-form__input" placeholder="Email" type="email" name="email" id />
+        <input class="contact-form__input" placeholder="Nombre" type="text" name="name" id>
+        <input class="contact-form__input" placeholder="Correo" type="email" name="email" id>
         <textarea
           class="contact-form__input contact-form__input--textarea"
           name="message"
           id
           rows="5"
-          placeholder="Something to say?"
+          placeholder="Mensaje"
         ></textarea>
       </div>
     </article>
@@ -94,11 +94,14 @@
 <script>
 import { bus } from "@/main.js";
 import Projects from "@/components/Projects";
+import { mapMutations } from 'vuex';
 
 export default {
   props: ["setColorTheme"],
   data() {
     return {
+      // route: window.location.hash,
+      page: "home",
       themeColor: "rgb(32, 32, 32)",
       menuOptions: [
         { id: 1, title: "Welcome", link: "app", active: true },
@@ -116,20 +119,30 @@ export default {
   mounted() {
     this.setColorTheme(this.themeColor);
     bus.setMenuOptions(this.menuOptions, this.themeColor);
+    this.prueba();
+  },
+  computed: {
+    route: function() {
+      return window.location.hash;
+    }
   },
   components: {
     // masonry: Masonry
-    Projects
+    Projects,
   },
   methods: {
     setSkillBar(percent) {
       return percent;
-    }
+    },
+    ...mapMutations(['prueba'])
   }
 };
 </script>
 
 <style lang="scss">
+.prueba-routero {
+  position: fixed;
+}
 .home {
   background-color: $primary;
 }
@@ -188,7 +201,7 @@ export default {
   align-content: center;
   min-height: 100vh;
   &__img {
-    width: 50%;
+    width: 35%;
   }
   &__description,
   .skills {
@@ -233,44 +246,46 @@ export default {
   }
   &__description {
     padding: 3rem 0;
+    line-height: 1.5;
+    text-align: justify;
   }
 }
-.blog {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-areas:
-    "post title"
-    "post action";
-  justify-items: center;
-  align-items: center;
-  min-height: 100vh;
-  &__title {
-    grid-area: title;
-  }
-  &__action {
-    grid-area: action;
-  }
-  .post {
-    grid-area: post;
-    display: flex;
-    flex-direction: column;
-    &__img {
-      text-align: center;
-    }
-    &__title,
-    &__date {
-      margin: 1rem 0;
-    }
-    &__title {
-      font-size: 18pt;
-    }
-    &__excerpt {
-      line-height: 1.2;
-      letter-spacing: 0.5px;
-    }
-  }
-}
+// .blog {
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   grid-template-rows: repeat(2, 1fr);
+//   grid-template-areas:
+//     "post title"
+//     "post action";
+//   justify-items: center;
+//   align-items: center;
+//   min-height: 100vh;
+//   &__title {
+//     grid-area: title;
+//   }
+//   &__action {
+//     grid-area: action;
+//   }
+//   .post {
+//     grid-area: post;
+//     display: flex;
+//     flex-direction: column;
+//     &__img {
+//       text-align: center;
+//     }
+//     &__title,
+//     &__date {
+//       margin: 1rem 0;
+//     }
+//     &__title {
+//       font-size: 18pt;
+//     }
+//     &__excerpt {
+//       line-height: 1.2;
+//       letter-spacing: 0.5px;
+//     }
+//   }
+// }
 .contact {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
